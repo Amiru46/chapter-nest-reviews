@@ -30,9 +30,11 @@ const HeroSection = () => {
         >
           <a href="#about" className="hover:text-gold transition-colors duration-300">About</a>
           <a href="#rooms" className="hover:text-gold transition-colors duration-300">Rooms</a>
+          <a href="#gallery" className="hover:text-gold transition-colors duration-300">Gallery</a>
           <a href="#amenities" className="hover:text-gold transition-colors duration-300">Amenities</a>
+          <a href="#booking" className="hover:text-gold transition-colors duration-300">Book</a>
+          <a href="#map" className="hover:text-gold transition-colors duration-300">Map</a>
           <a href="#reviews" className="hover:text-gold transition-colors duration-300">Reviews</a>
-          <a href="#info" className="hover:text-gold transition-colors duration-300">Info</a>
         </motion.div>
       </nav>
 
