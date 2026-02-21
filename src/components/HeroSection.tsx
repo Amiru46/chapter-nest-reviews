@@ -1,7 +1,21 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import heroImage from "@/assets/hero-hotel.jpg";
 
+const navItems = [
+  { href: "#about", label: "About" },
+  { href: "#rooms", label: "Rooms" },
+  { href: "#gallery", label: "Gallery" },
+  { href: "#amenities", label: "Amenities" },
+  { href: "#booking", label: "Book" },
+  { href: "#map", label: "Map" },
+  { href: "#reviews", label: "Reviews" },
+];
+
 const HeroSection = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <section className="relative h-screen min-h-[600px] overflow-hidden">
       <img
@@ -13,7 +27,8 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-hero-overlay" />
 
       {/* Navigation */}
-      <nav className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 md:px-12 py-6">
+      <nav className="absolute top-0 left-0 right-0 z-20 px-6 md:px-12 py-6">
+        <div className="flex items-center justify-between">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -22,20 +37,54 @@ const HeroSection = () => {
         >
           The Chapter
         </motion.div>
+
+        <button
+          type="button"
+          className="md:hidden text-cream"
+          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-nav-menu"
+          aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+        >
+          {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+        </button>
+
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="hidden md:flex items-center gap-8 text-sm tracking-[0.2em] uppercase text-cream/80 font-body"
         >
-          <a href="#about" className="hover:text-gold transition-colors duration-300">About</a>
-          <a href="#rooms" className="hover:text-gold transition-colors duration-300">Rooms</a>
-          <a href="#gallery" className="hover:text-gold transition-colors duration-300">Gallery</a>
-          <a href="#amenities" className="hover:text-gold transition-colors duration-300">Amenities</a>
-          <a href="#booking" className="hover:text-gold transition-colors duration-300">Book</a>
-          <a href="#map" className="hover:text-gold transition-colors duration-300">Map</a>
-          <a href="#reviews" className="hover:text-gold transition-colors duration-300">Reviews</a>
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href} className="hover:text-gold transition-colors duration-300">
+              {item.label}
+            </a>
+          ))}
         </motion.div>
+        </div>
+
+        {isMobileMenuOpen && (
+          <motion.div
+            id="mobile-nav-menu"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden mt-4 rounded-sm bg-black/80 p-4"
+          >
+            <div className="flex flex-col gap-4 text-xs tracking-[0.2em] uppercase text-cream/90 font-body">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="hover:text-gold transition-colors duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </nav>
 
       {/* Hero Content */}
@@ -44,7 +93,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-gold tracking-[0.4em] uppercase text-xs md:text-sm mb-4 font-body font-light"
+          className="text-white tracking-[0.4em] uppercase text-xs md:text-sm mb-4 font-body font-extrabold bg-[#424242] rounded-md"
         >
           Nuwara Eliya, Sri Lanka
         </motion.p>
@@ -60,7 +109,7 @@ const HeroSection = () => {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="w-20 h-[1px] bg-gold my-6"
+          className="w-20 h-[4px] bg-white my-6"
         />
         <motion.p
           initial={{ opacity: 0 }}
@@ -75,7 +124,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.5 }}
-          className="mt-10 px-8 py-3 border border-gold/60 text-gold text-sm tracking-[0.2em] uppercase font-body hover:bg-gold hover:text-accent-foreground transition-all duration-500"
+          className="mt-10 px-8 py-3 border-[3px] border-gold text-white text-md tracking-[0.2em] uppercase font-body hover:bg-gold hover:text-accent-foreground transition-all duration-500"
         >
           Explore Rooms
         </motion.a>
