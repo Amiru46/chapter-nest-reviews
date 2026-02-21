@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Navigation } from 'lucide-react';
 import heroImage from "@/assets/hero-hotel.jpg";
 
 const navItems = [
@@ -104,9 +105,10 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-white tracking-[0.4em] uppercase text-xs md:text-sm mb-4 font-body font-extrabold bg-gold rounded-md"
+          className="text-white tracking-[0.4em] uppercase text-xs md:text-sm mb-4 font-body font-extrabold  rounded-md"
         >
-          Nuwara Eliya, Sri Lanka
+          Nuwara Eliya, Sri Lanka {<Navigation size={23} className="inline-block ml-1 text-gold" />}
+          
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
