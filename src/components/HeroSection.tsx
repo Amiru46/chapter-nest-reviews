@@ -27,7 +27,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-hero-overlay" />
 
       {/* Navigation */}
-      <nav className="absolute top-0 left-0 right-0 z-20 px-6 md:px-12 py-6">
+      <nav className="fixed top-0 left-0 right-0 z-20 px-6 md:px-12 py-6 bg-black/50 backdrop-blur-sm">
         <div className="flex items-center justify-between">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -69,7 +69,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden mt-4 rounded-sm bg-black/80 p-4"
+            className="md:hidden mt-4 rounded-sm p-4"
           >
             <div className="flex flex-col gap-4 text-xs tracking-[0.2em] uppercase text-cream/90 font-body">
               {navItems.map((item) => (
