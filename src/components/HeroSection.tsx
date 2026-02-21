@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import heroImage from "@/assets/hero-hotel.jpg";
 
 const navItems = [
+
   { href: "#about", label: "About" },
   { href: "#rooms", label: "Rooms" },
   { href: "#gallery", label: "Gallery" },
@@ -33,21 +34,31 @@ const HeroSection = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display text-2xl md:text-3xl tracking-wider text-cream"
+          className="font-display text-2xl md:text-3xl tracking-wider text-cream cursor-pointer "
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
         >
           The Chapter
         </motion.div>
 
-        <button
+        <motion.button
           type="button"
           className="md:hidden text-cream"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-nav-menu"
           aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
         >
           {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
+        </motion.button>
 
         <motion.div
           initial={{ opacity: 0, x: 20 }}
@@ -68,7 +79,7 @@ const HeroSection = () => {
             id="mobile-nav-menu"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.5 }}
             className="md:hidden mt-4 rounded-sm p-4"
           >
             <div className="flex flex-col gap-4 text-xs tracking-[0.2em] uppercase text-cream/90 font-body">
@@ -93,7 +104,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-white tracking-[0.4em] uppercase text-xs md:text-sm mb-4 font-body font-extrabold bg-[#424242] rounded-md"
+          className="text-white tracking-[0.4em] uppercase text-xs md:text-sm mb-4 font-body font-extrabold bg-gold rounded-md"
         >
           Nuwara Eliya, Sri Lanka
         </motion.p>
