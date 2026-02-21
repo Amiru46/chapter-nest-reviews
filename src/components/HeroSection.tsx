@@ -107,7 +107,9 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-white tracking-[0.4em] uppercase text-xs md:text-sm mb-4 font-body font-extrabold  rounded-md"
         >
-          Nuwara Eliya, Sri Lanka {<Navigation size={23} className="inline-block ml-1 text-gold" />}
+          Nuwara Eliya, Sri Lanka 
+          
+          {/* {<Navigation size={23} className="inline-block ml-1 text-gold" />} */}
           
         </motion.p>
         <motion.h1
